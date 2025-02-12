@@ -6,11 +6,11 @@ namespace Mission06_Young.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private MoviesContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(MoviesContext movies)
         {
-            _logger = logger;
+            _context = movies;
         }
 
         public IActionResult Index()
@@ -32,6 +32,9 @@ namespace Mission06_Young.Controllers
         [HttpPost]
         public IActionResult MovieForm(Form response)
         {
+            _context.Movies.Add(response); //Add record to the database
+            _context.SaveChanges();
+
             return View("Confirmation", response);
         }
 
