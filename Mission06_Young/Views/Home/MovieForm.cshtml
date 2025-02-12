@@ -1,12 +1,47 @@
-﻿@{
+﻿@model Form
+
+@{
     ViewData["Title"] = "Movie Form";
 }
 
-<!-- One last page with a form to enter movies into the collection. The new movie
-form should allow to enter all the information currently contained in the
-spreadsheet linked above. Please note:
-o For the Rating field, use a dropdown menu (G, PG, PG-13, R).
-o For the Edited field, we want that to be a yes/no (true/false) option.
-o The “Edited”, “Lent To”, and “Notes” are not required to create a new
-record. All other fields must be entered.
-o Notes should be limited to 25 characters. (#notcoveredinthevideos) -->
+<div>
+    <!--Title-->
+    <h2>Enter a New Movie</h2>
+    <form method="post">
+        <!-- Required Fields -->
+        <label asp-for="Category">Category:</label>
+        <input asp-for="Category" required /><br><br>
+
+        <label asp-for="Title">Title:</label>
+        <input asp-for="Title" required><br><br>
+
+        <label asp-for="Year">Year Released:</label>
+        <input asp-for="Year" required><br><br>
+
+        <label asp-for="Director">Director:</label>
+        <input asp-for="Director" required><br><br>
+
+        <!--Dropdown menu for rating-->
+        <label asp-for="Rating">Rating:</label>
+        <select asp-for="Rating" typeof="checkbox" value = "true" required>
+            <option value="G">G</option>
+            <option value="PG">PG</option>
+            <option value="PG-13">PG-13</option>
+            <option value="R">R</option>
+        </select><br><br>
+
+        <!-- True/ false and optional for edited -->
+        <label asp-for="Edited">Edited:</label>
+        <input asp-for="Edited"><br><br>
+
+        <!--Optional lent to-->
+        <label asp-for="LentTo">Lent To:</label>
+        <input asp-for="LentTo"><br><br>
+
+        <!--Optional notes with 25 characters max-->
+        <label asp-for="Notes">Notes (max 25 characters):</label>
+        <input asp-for="Notes" maxlength="25"><br><br>
+
+        <button type="submit">Add Movie</button>
+    </form>
+</div>

@@ -23,10 +23,17 @@ namespace Mission06_Young.Controllers
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        [HttpGet]
+        public IActionResult MovieForm()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
+
+        [HttpPost]
+        public IActionResult MovieForm(Form response)
+        {
+            return View("Confirmation", response);
+        }
+
     }
 }
