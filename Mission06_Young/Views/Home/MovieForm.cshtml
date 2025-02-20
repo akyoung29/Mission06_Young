@@ -7,31 +7,36 @@
 <div>
     <!--Title-->
     <h2>Enter a New Movie</h2>
+
     <form method="post">
         <!-- Hidden MovieId for editing -->
         <input type="Hidden" asp-for="MovieId" />
 
         <!--Dropdown for categories-->
-        <select asp-for="CategoryID">
+        <select asp-for="CategoryId" asp-items="@(new SelectList(ViewBag.Categories, "CategoryId", "CategoryName"))">
             <option value="">Select A Category</option>
             @foreach (Category c in ViewBag.Categories)
             {
                 <option value="@c.CategoryId">@c.CategoryName</option>
             }
         </select>
+        <br /><br />
 
+        <!--Movie Title-->
         <label asp-for="Title">Title:</label>
-        <input asp-for="Title" required><br><br>
+        <input asp-for="Title"><br><br>
 
+        <!--Year Released-->
         <label asp-for="Year">Year Released:</label>
-        <input asp-for="Year" required><br><br>
+        <input asp-for="Year" type="number"><br><br>
 
+        <!--Director-->
         <label asp-for="Director">Director:</label>
-        <input asp-for="Director" required><br><br>
+        <input asp-for="Director"><br><br>
 
         <!--Dropdown menu for rating-->
         <label asp-for="Rating">Rating:</label>
-        <select asp-for="Rating" typeof="checkbox" value = "true" required>
+        <select asp-for="Rating" typeof="checkbox" value = "true">
             <option value="G">G</option>
             <option value="PG">PG</option>
             <option value="PG-13">PG-13</option>

@@ -13,6 +13,7 @@ namespace Mission06_Young.Controllers
             _context = movies;
         }
 
+        // Index Get
         public IActionResult Index()
         {
             var movies = _context.Movies
@@ -20,20 +21,23 @@ namespace Mission06_Young.Controllers
             return View(movies);
         }
 
+        // GetToKnow Get
         public IActionResult GetToKnow()
         {
             return View();
         }
 
+        // Movie Form Get
         [HttpGet]
         public IActionResult MovieForm()
         {
             ViewBag.Categories = _context.Categories
                 .OrderBy(x => x.CategoryName)
                 .ToList();
-            return View("Movie Form", new Form());
+            return View("MovieForm", new Form());
         }
 
+        //Movie Form Post
         [HttpPost]
         public IActionResult MovieForm(Form response)
         {
@@ -54,6 +58,7 @@ namespace Mission06_Young.Controllers
             }
         }
 
+        // Movie Edit Get
         public IActionResult Edit(int id)
         {
             var movieToEdit = _context.Movies
@@ -66,6 +71,7 @@ namespace Mission06_Young.Controllers
             return View("MovieForm", movieToEdit);
         }
 
+        //Movie Edit Post
         [HttpPost]
         public IActionResult Edit(Form form)
         {
@@ -75,6 +81,7 @@ namespace Mission06_Young.Controllers
             return RedirectToAction("Index");
         }
 
+        // Delete Movie Get
         [HttpGet]
         public IActionResult Delete(int id)
         {
@@ -84,6 +91,7 @@ namespace Mission06_Young.Controllers
             return View("Delete", movieToDelete);
         }
 
+        // Delete Movie Post
         [HttpPost]
         public IActionResult Delete(Form form)
         {

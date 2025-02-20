@@ -7,5 +7,6 @@ namespace Mission06_Young.Models
         public MoviesContext(DbContextOptions<MoviesContext> options) : base (options) { }
 
         public DbSet<Form> Movies { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

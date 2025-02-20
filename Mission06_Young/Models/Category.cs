@@ -6,6 +6,6 @@ namespace Mission06_Young.Models
     {
         [Key]
         public int CategoryId { get; set; }
-        public string CategoryName {  get; set; }
+        public required string CategoryName {  get; set; }
     }
 }
