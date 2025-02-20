@@ -8,9 +8,17 @@
     <!--Title-->
     <h2>Enter a New Movie</h2>
     <form method="post">
-        <!-- Required Fields -->
-        <label asp-for="Category">Category:</label>
-        <input asp-for="Category" required /><br><br>
+        <!-- Hidden MovieId for editing -->
+        <input type="Hidden" asp-for="MovieId" />
+
+        <!--Dropdown for categories-->
+        <select asp-for="CategoryID">
+            <option value="">Select A Category</option>
+            @foreach (Category c in ViewBag.Categories)
+            {
+                <option value="@c.CategoryId">@c.CategoryName</option>
+            }
+        </select>
 
         <label asp-for="Title">Title:</label>
         <input asp-for="Title" required><br><br>
@@ -38,10 +46,18 @@
         <label asp-for="LentTo">Lent To:</label>
         <input asp-for="LentTo"><br><br>
 
+        <!-- True/ false and optional for plex -->
+        <label asp-for="CopiedToPlex">Copied To Plex:</label>
+        <input asp-for="CopiedToPlex" type="checkbox" value="true"><br><br>
+
         <!--Optional notes with 25 characters max-->
         <label asp-for="Notes">Notes (max 25 characters):</label>
         <input asp-for="Notes" maxlength="25"><br><br>
 
+        <!--Submit form-->
         <button type="submit">Add Movie</button>
+
+        <!--Validate Data, and return what is invalid-->
+        <div asp-validation-summary="All"></div>
     </form>
 </div>

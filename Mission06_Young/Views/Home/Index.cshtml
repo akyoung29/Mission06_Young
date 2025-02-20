@@ -1,9 +1,55 @@
 ﻿@{
     ViewData["Title"] = "The Joel Hilton Film Collection";
 }
+
+@model List<Form>
+
 <!--Title and image from the internet-->
 <div class="text-center">
     <h1 class="display-4">The Joel Hilton Film Collection</h1>
     <br /><br />
     <img src="~/img/JoelHiltonHeadshot.jpg" alt="Image of Joel Hilton">
+</div>
+
+<br /><br />
+
+<!--Table to show movies-->
+<div>
+    <table class="table table-bordered">
+        <thead class="fw-bold">
+            <tr>
+				<td>MovieId</td>
+				<td>CategoryId</td>
+				<td>Title</td>
+				<td>Year</td>
+				<td>Director</td>
+				<td>Rating</td>
+				<td>Edited</td>
+				<td>LentTo</td>
+				<td>CopiedToPlex</td>
+				<td>Notes</td>
+            </tr>
+        </thead>
+
+        @foreach (var x in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@x.MovieId</td>
+                    <td>@x.CategoryID</td>
+                    <td>@x.Title</td>
+                    <td>@x.Year</td>
+                    <td>@x.Director</td>
+                    <td>@x.Rating</td>
+                    <td>@x.Edited</td>
+                    <td>@x.LentTo</td>
+                    <td>@x.CopiedToPlex</td>
+                    <td>@x.Notes</td>
+
+                    <td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@x.MovieId">Edit</a></td>
+                    <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@x.MovieId">Delete</a></td>
+                </tr>
+            </tbody>
+        }
+    </table>
 </div>
